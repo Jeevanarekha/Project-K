@@ -1,7 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:get_it/get_it.dart';
-// // services
 // import '../services/navigation_service.dart';
 // import '../services/media_service.dart';
 // import '../services/cloud_storage_service.dart';
@@ -26,32 +25,35 @@
 //   void initState() {
 //     super.initState();
 //     Future.delayed(const Duration(seconds: 1)).then((_) {
-//       _setup().then(
-//         (_) => widget.onInitializationComplete(),
-//       );
+//       _setup().then((_) => widget.onInitializationComplete());
 //     });
 //   }
 
 //   @override
-//   Widget build(BuildContext contex) {
+//   Widget build(BuildContext context) {
 //     return MaterialApp(
 //       title: 'project-kooli1',
 //       theme: ThemeData(
+//         brightness: Brightness.dark, // Set the brightness to light or dark
 //         scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
-//         colorScheme:
-//             const ColorScheme(background: Color.fromRGBO(36, 35, 49, 1.0)),
+//         colorScheme: const ColorScheme.dark(
+//           background: Color.fromRGBO(36, 35, 49, 1.0),
+//         ),
 //       ),
 //       home: Scaffold(
-//           body: Center(
-//         child: Container(
+//         body: Center(
+//           child: Container(
 //             height: 200,
 //             width: 200,
 //             decoration: const BoxDecoration(
-//                 image: DecorationImage(
-//               fit: BoxFit.contain,
-//               image: AssetImage('assets/images/image2.png'),
-//             ))),
-//       )),
+//               image: DecorationImage(
+//                 fit: BoxFit.contain,
+//                 image: AssetImage('assets/images/image2.png'),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
 //     );
 //   }
 
@@ -62,26 +64,21 @@
 //   }
 
 //   void _registerServices() {
-//     GetIt.instance.registerSingleton<NavigationService>(
-//       NavigationService(),
-//     );
-
-//     GetIt.instance.registerSingleton<MediaService>(
-//       MediaService(),
-//     );
-
-//     GetIt.instance.registerSingleton<CloudStorageService>(
-//       CloudStorageService(),
-//     );
-//     GetIt.instance.registerSingleton<DatabaseService>(
-//       DatabaseService(),
-//     );
+//     GetIt.instance.registerSingleton<NavigationService>(NavigationService());
+//     GetIt.instance.registerSingleton<MediaService>(MediaService());
+//     GetIt.instance
+//         .registerSingleton<CloudStorageService>(CloudStorageService());
+//     GetIt.instance.registerSingleton<DatabaseService>(DatabaseService());
 //   }
 // }
 
 import 'package:flutter/material.dart';
+
+//Packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+
+//Services
 import '../services/navigation_service.dart';
 import '../services/media_service.dart';
 import '../services/cloud_storage_service.dart';
@@ -105,31 +102,32 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1)).then((_) {
-      _setup().then((_) => widget.onInitializationComplete());
-    });
+    Future.delayed(Duration(seconds: 1)).then(
+      (_) {
+        _setup().then(
+          (_) => widget.onInitializationComplete(),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'project-kooli1',
+      title: 'Chatify',
       theme: ThemeData(
-        brightness: Brightness.dark, // Set the brightness to light or dark
-        scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
-        colorScheme: const ColorScheme.dark(
-          background: Color.fromRGBO(36, 35, 49, 1.0),
-        ),
+        backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
+        scaffoldBackgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
       ),
       home: Scaffold(
         body: Center(
           child: Container(
             height: 200,
             width: 200,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.contain,
-                image: AssetImage('assets/images/image2.png'),
+                image: AssetImage('assets/images/logo.png'),
               ),
             ),
           ),
@@ -145,10 +143,17 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _registerServices() {
-    GetIt.instance.registerSingleton<NavigationService>(NavigationService());
-    GetIt.instance.registerSingleton<MediaService>(MediaService());
-    GetIt.instance
-        .registerSingleton<CloudStorageService>(CloudStorageService());
-    GetIt.instance.registerSingleton<DatabaseService>(DatabaseService());
+    GetIt.instance.registerSingleton<NavigationService>(
+      NavigationService(),
+    );
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
+    );
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
+    );
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
+    );
   }
 }

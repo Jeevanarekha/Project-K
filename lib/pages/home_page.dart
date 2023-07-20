@@ -1,56 +1,6 @@
-import 'package:flutter/material.dart';
-
-class HomePage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _HomePageState();
-  }
-}
-
-class _HomePageState extends State<HomePage> {
-  int _currentPage = 0;
-  final List<Widget> _pages = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.green,
-    ),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return _buildUI();
-  }
-
-  Widget _buildUI() {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentPage,
-        onTap: (_index) {
-          setState(() {
-            _currentPage = _index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            label: "Chats",
-            icon: Icon(Icons.chat_bubble_sharp),
-          ),
-          BottomNavigationBarItem(
-            label: "Users",
-            icon: Icon(
-              Icons.supervised_user_circle_sharp,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// 2nd code
-
 // import 'package:flutter/material.dart';
+// import '../pages/chats_page.dart';
+// import '../pages/users_page.dart';
 
 // class HomePage extends StatefulWidget {
 //   @override
@@ -62,14 +12,9 @@ class _HomePageState extends State<HomePage> {
 // class _HomePageState extends State<HomePage> {
 //   int _currentPage = 0;
 //   final List<Widget> _pages = [
-//     Container(
-//       color: Colors.red,
-//     ),
-//     Container(
-//       color: Colors.green,
-//     ),
+//     ChatsPage(),
+//     UsersPage(),
 //   ];
-
 //   @override
 //   Widget build(BuildContext context) {
 //     return _buildUI();
@@ -77,9 +22,6 @@ class _HomePageState extends State<HomePage> {
 
 //   Widget _buildUI() {
 //     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Home Page'),
-//       ),
 //       body: _pages[_currentPage],
 //       bottomNavigationBar: BottomNavigationBar(
 //         currentIndex: _currentPage,
@@ -95,7 +37,9 @@ class _HomePageState extends State<HomePage> {
 //           ),
 //           BottomNavigationBarItem(
 //             label: "Users",
-//             icon: Icon(Icons.supervised_user_circle_sharp),
+//             icon: Icon(
+//               Icons.supervised_user_circle_sharp,
+//             ),
 //           ),
 //         ],
 //       ),
@@ -103,64 +47,57 @@ class _HomePageState extends State<HomePage> {
 //   }
 // }
 
-// 3rd code
+//Packages
+import 'package:flutter/material.dart';
 
-// import 'package:flutter/material.dart';
+//Pages
+import '../pages/chats_page.dart';
+import '../pages/users_page.dart';
 
-// class HomePage extends StatefulWidget {
-//   @override
-//   State<StatefulWidget> createState() {
-//     return _HomePageState();
-//   }
-// }
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _HomePageState();
+  }
+}
 
-// class _HomePageState extends State<HomePage> {
-//   int _currentPage = 0;
-//   final List<Widget> _pages = [
-//     Container(
-//       color: Colors.red,
-//     ),
-//     Container(
-//       color: Colors.green,
-//     ),
-//   ];
+class _HomePageState extends State<HomePage> {
+  int _currentPage = 0;
+  final List<Widget> _pages = [
+    ChatsPage(),
+    UsersPage(),
+  ];
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return _buildUI();
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return _buildUI();
+  }
 
-//   Widget _buildUI() {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Home Page'),
-//       ),
-//       body: PageView(
-//         children: _pages,
-//         onPageChanged: (index) {
-//           setState(() {
-//             _currentPage = index;
-//           });
-//         },
-//       ),
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: _currentPage,
-//         onTap: (index) {
-//           setState(() {
-//             _currentPage = index;
-//           });
-//         },
-//         items: [
-//           BottomNavigationBarItem(
-//             label: "Chats",
-//             icon: Icon(Icons.chat_bubble_sharp),
-//           ),
-//           BottomNavigationBarItem(
-//             label: "Users",
-//             icon: Icon(Icons.supervised_user_circle_sharp),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  Widget _buildUI() {
+    return Scaffold(
+      body: _pages[_currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentPage,
+        onTap: (_index) {
+          setState(() {
+            _currentPage = _index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: "Chats",
+            icon: Icon(
+              Icons.chat_bubble_sharp,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Users",
+            icon: Icon(
+              Icons.supervised_user_circle_sharp,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
